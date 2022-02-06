@@ -10,6 +10,13 @@ def update_from_globals(updates: list) -> None:
     Replace with the value of that key
     '''
     pass
+
+def upsert_global_updates(gu: list, newval: dict) -> list:
+    gu_updated = [i for i in gu if i.keys() != newval.keys()]
+    gu_updated.append(newval)
+    return gu_updated
+
+
 YAML_FILE = 'ifelse.yml'
 with open(YAML_FILE) as fp:
     dataMap = yaml.safe_load(fp)
@@ -29,6 +36,6 @@ if 'conditionals' in job:
             # cond[var]) = {'mdl == mdl': 'RDFLX=21', 'mdl!=mdl':'RDFLX=22'}
             for chks in list(cond[var].items()): # [('mdl==mdl','RDFLX=21'),('mdl!=mdl','RDFLX=22')]
                 if eval(chks[0]): #eval('mdl==mdl')
-                    global_updates.append({var:chks[1]}) # {'license':'RDFLX=21'}
+                    global_updates = upsert_global_updates(global_updates,{var:chks[1]}) # {'license':'RDFLX=21'}
 print(global_updates)
 print(job['build']['bcygwin_smp']['command'])
