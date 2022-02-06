@@ -2,8 +2,8 @@
 branch: mdl
 conditionals:
   - license:
-      '"{{ branch }}" == "mdl"': RDFLX=21
       '"{{ branch }}" != "mdl"': RDFLX=22
+      '"{{ branch }}" == "mdl"': RDFLX=21
   - h3d:
       '"{{ branch }}" == "mdl"': H3D=22
       '"{{ branch }}" != "mdl"': H3D=14
