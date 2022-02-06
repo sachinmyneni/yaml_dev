@@ -4,8 +4,11 @@ conditionals:
   - license:
       '"{{ branch }}" == "mdl"': RDFLX=21
       '"{{ branch }}" != "mdl"': RDFLX=22
+  - h3d:
+      '"{{ branch }}" == "mdl"': H3D=22
+      '"{{ branch }}" != "mdl"': H3D=14
 build:
   bcygwin_smp:
-    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all {{ license }}'
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all %h3d% %license%'
   bcygwin_impi:
-    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl MPI=6 ML=all {{ license }}'
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl MPI=6 ML=all %h3d% %license%'
