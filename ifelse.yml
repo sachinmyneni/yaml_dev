@@ -1,0 +1,8 @@
+---
+branch: mdl
+license: RDFLX=21
+build:
+  bcygwin_smp:
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all {{ license }}'
+  bcygwin_impi:
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl MPI=6 ML=all {{ license }}'
