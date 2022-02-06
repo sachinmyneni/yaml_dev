@@ -1,6 +1,9 @@
 ---
 branch: mdl
-license: RDFLX=21
+conditionals:
+  - license:
+      '"{{ branch }}" == "mdl"': RDFLX=21
+      '"{{ branch }}" != "mdl"': RDFLX=22
 build:
   bcygwin_smp:
     command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all {{ license }}'
