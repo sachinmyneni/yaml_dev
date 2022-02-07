@@ -1,15 +1,15 @@
 ---
 branch: mdl
 conditionals:
-  - license:
-      '1': RDFLX=23  #default should show up first
-      '"{{ branch }}" != "mdl"': RDFLX=22
-      '"{{ branch }}" == "mdl"': RDFLX=21
+  - radflex:
+      'True': 23  #default should show up first and keyed with a 'True' or '1'
+      '"{{ branch }}" != "mdl"': 22
+      '"{{ branch }}" == "mdl"': 21
   - h3d:
       '"{{ branch }}" == "mdl"': H3D=22
       '"{{ branch }}" != "mdl"': H3D=14
 build:
   bcygwin_smp:
-    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all %h3d% %license%'
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl ML=all %h3d% RDFLX=%radflex%'
   bcygwin_impi:
-    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl MPI=6 ML=all %h3d% %license%'
+    command: 'wslo.bat make C=e64 OS64=1 BLAS=mkl MPI=6 ML=all %h3d% RDFLX=%radflex%'
